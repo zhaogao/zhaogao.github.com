@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>图片时钟</title>
+<style>
+body,html{height:100%; background:#666;}
+#box {width:500px; height:100px; margin:50px auto; font-size:60px; color:#fff;}
+</style>
+<script>
+function addZero(n) {
+	if(n<10){
+		return '0'+n;
+	}else{
+		return ''+n;
+	}	
+}
+window.onload=function(){
+	var oDiv=document.getElementById('box');
+	var Img=oDiv.getElementsByTagName('img');
+	
+	clock();
+	
+	function clock (){
+		var oDate=new Date();
+		var ih=oDate.getHours();
+		var im=oDate.getMinutes();
+		var is=oDate.getSeconds();
+		
+		var str=addZero(ih)+addZero(im)+addZero(is);
+		for(var i=0; i<Img.length; i++){
+			Img[i].src="img/"+str.charAt(i)+".png";
+		}	
+	}
+	
+	var timer=setInterval(clock,1000);
+};
+</script>
+<body>
+	<div id="box">
+    	<img src="images/0.png" />
+        <img src="images/0.png" />
+        :
+        <img src="images/0.png" />
+        <img src="images/0.png" />
+        :
+       	<img src="images/0.png" />
+        <img src="images/0.png" />
+    </div>
+</body>
+</html>

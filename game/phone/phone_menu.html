@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>iphone</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+.clearfix:after{display:block; content:''; clear:both;}
+.clearfix{zoom:1;}
+.box{position:relative; width:340px; height:660px; background:url(img/phone.png) no-repeat;  margin:0 auto;}
+#div1{position:absolute; left:54px; top:120px; width:260px; height:600px; cursor:pointer; }
+#div1 li{float:left; width:50px; height:51px; margin-right:10px; margin-bottom:20px;}
+#div1 li img{width:50px; height:51px; }
+</style>
+<script src="ready.js"></script>
+<script src="yun1.js"></script>
+<script>
+$(function(){
+	var oUl=document.getElementById('div1');
+	var aLi=oUl.children;
+	var len=aLi.length;
+	var aPos=[];
+	var zIndex=1;
+	
+	for(var i=0; i<len; i++){
+		aPos[i]={left:aLi[i].offsetLeft,top:aLi[i].offsetTop};
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';	
+	}
+	
+	for(var i=0; i<len; i++){
+		aLi[i].style.position="absolute";
+		aLi[i].style.margin=0;
+		aLi[i].index=i;
+		drag(aLi[i]);
+	}
+	
+	function drag(obj){
+		obj.onmousedown=function(ev){
+			var oEvent=ev || event;	
+			var disX=oEvent.clientX-obj.offsetLeft;
+			var disY=oEvent.clientY-obj.offsetTop;
+			
+			obj.style.zIndex=zIndex++;
+			document.onmousemove=function(ev){
+				var oEvent=ev || event;	
+				obj.style.left=oEvent.clientX-disX+'px';
+				obj.style.top=oEvent.clientY-disY+'px';	
+				
+				var oNear=findMin(obj);
+				if(oNear && oNear!=obj){
+					var n=obj.index;
+					var m=oNear.index;
+					if(n<m){
+						for(var i=0 ;i<len; i++){
+							if(aLi[i].index>=n+1 && aLi[i].index<=m){
+								aLi[i].index--;
+								yun(aLi[i],aPos[aLi[i].index]);	
+							}
+						}
+						
+					}else if(n>m){
+						for(var i=0 ;i<len; i++){
+							if(aLi[i].index>=m && aLi[i].index<=n-1){
+								aLi[i].index++;
+								yun(aLi[i],aPos[aLi[i].index]);	
+							}
+						}
+					}
+					obj.index=m;
+					//oNear.index=n;
+				}
+			};
+			document.onmouseup=function(ev){
+				document.onmouseup=null;
+				document.onmousemove=null;
+				obj.releaseCapture && obj.releaseCapture();
+				
+		
+				yun(obj,aPos[obj.index]);		
+			};
+			obj.setCapture && obj.setCapture();
+			return false;
+		};
+	}
+	
+	function findMin (obj){
+		var iMin=9999999;
+		var iMinIndex=-1;
+		for(var i=0; i<len; i++){
+			//if(obj==aLi[i]) continue;
+			if(collText(obj,aLi[i])){
+				var dis=getDis(obj,aLi[i]);
+				if(iMin>dis){
+					iMin=dis;
+					iMinIndex=i;
+				}
+			}
+		}
+		if(iMinIndex==-1){
+			return null;
+		}
+		return 	aLi[iMinIndex];
+	}
+	
+	function getDis(obj1,obj2){
+		var a=obj1.offsetLeft-aPos[obj2.index].left
+		var b=obj1.offsetTop-aPos[obj2.index].top
+		return Math.sqrt(a*a+b*b);
+	}
+	
+	function collText(obj1,obj2){
+		var l1=obj1.offsetLeft;
+		var t1=obj1.offsetTop;
+		var r1=l1+obj1.offsetWidth;
+		var b1=t1+obj1.offsetHeight;
+		
+		var l2=obj2.offsetLeft;
+		var t2=obj2.offsetTop;
+		var r2=l1+obj2.offsetWidth;
+		var b2=t1+obj2.offsetHeight;
+		
+		if(l1>r2 || t1>b2 || r1<l2 || b1<t2){
+			return false;
+		}else{
+			return true;
+		}
+	}
+});
+</script>
+</head>
+
+<body>
+	<div class="box">
+	<ul id="div1" class="clearfix">
+		<li><img src="img/1.png"  alt=""/></li>
+		<li><img src="img/2.png" alt="" /></li>
+		<li><img src="img/3.png" alt="" /></li>
+		<li><img src="img/4.png" alt="" /></li>
+		<li><img src="img/5.png" alt="" /></li>
+		<li><img src="img/6.png" alt="" /></li>
+		<li><img src="img/7.png" alt="" /></li>
+		<li><img src="img/8.png" alt="" /></li>
+		<li><img src="img/9.png" alt="" /></li>
+		<li><img src="img/10.png" alt="" /></li>
+		<li><img src="img/11.png" alt=""></li>
+		<li><img src="img/12.png" alt=""></li>
+		<li><img src="img/13.png" alt=""></li>
+		<li><img src="img/14.png" alt=""></li>
+		<li><img src="img/15.png" alt=""></li>
+		<li><img src="img/16.png" alt=""></li>
+		<li><img src="img/17.png" alt=""></li>
+		<li><img src="img/18.png" alt=""></li>
+		<li><img src="img/19.png" alt=""></li>
+		<li><img src="img/20.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>

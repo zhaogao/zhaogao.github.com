@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function(){
+	var oTxt1=document.getElementById('tex1');
+	var oTxt2=document.getElementById('tex2');
+	var oBtn1=document.getElementById('btn1');
+	var oBtn2=document.getElementById('btn2');
+	
+	//加密
+	oBtn1.onclick=function(){
+		var str='';
+		for(var i=0; i<oTxt1.value.length; i++){
+			str +=String.fromCharCode(oTxt1.value.charCodeAt(i)-3);
+		}
+		oTxt2.value=str;	
+	};
+		//解密
+	oBtn2.onclick=function(){
+		var arr=[];
+		for(var i=0; i<oTxt2.value.length; i++){
+			arr.push(String.fromCharCode(oTxt2.value.charCodeAt(i)+3));
+		}
+		oTxt1.value=arr.join('');
+	};
+};
+</script>
+</head>
+
+<body>
+	<textarea id="tex1" rows=15 cols=60 ></textarea><br />
+    <input id="btn1" type="button" value="加密" />
+     <input id="btn2" type="button" value="解密" /><br />
+     <textarea id="tex2" rows=15 cols=60 ></textarea>
+   
+</body>
+</html>

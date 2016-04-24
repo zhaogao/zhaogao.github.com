@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>窗口查看效果</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+body{background:#333;}
+#box{position:relative; width:900px; height:400px; margin:100px auto;  overflow:hidden;}
+#box ul {position:absolute; left:0; top:100px; height:200px;}
+#box ul li{float:left; position:relative; width:260px; height:180px;  padding:10px; }
+#box ul li img{width:260px; height:180px;}
+/* #box ul li span{position:absolute; left:50%; top:50%; margin:-50px; width:100px; height:100px; background:yellow; line-height:100px; text-align:center;} */
+/* #line{position:absolute; left:50%; top:0; width:1px; height:100%; background:red;} */
+#line{position:absolute; left:390px; top:0; color:#fff; }
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('box');
+	var oUl=oDiv.children[0];
+	var aLi=oUl.children;
+	var aSpan=oDiv.getElementsByTagName('span');
+	var aImg=oDiv.getElementsByTagName('img');
+	var len=aLi.length;
+	oUl.style.width=aLi[0].offsetWidth*len+'px';
+	
+	oUl.onmousedown=function(ev){
+		var oEv=ev || event;
+		var disX=oEv.clientX-oUl.offsetLeft;
+		
+		document.onmousemove=function(ev){
+			var oEv=ev || event;
+			var l=oEv.clientX-disX;
+			if(l>oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth){
+				l=oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth;
+			}else if(l<oDiv.offsetWidth/2-(len-1+0.5)*aLi[0].offsetWidth){
+				l=oDiv.offsetWidth/2-(len-1+0.5)*aLi[0].offsetWidth;
+			}
+			oUl.style.left=l+'px';
+			toBig();	
+		};
+		
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+			oUl.releaseCapture && oUl.releaseCapture();	
+		};
+		oUl.setCapture && oUl.setCapture();
+		return false;	
+	};
+	
+	setCenter(2);
+	function setCenter(n){
+		oUl.style.left=oDiv.offsetWidth/2-(n+0.5)*aLi[0].offsetWidth+'px';	
+	}
+	
+	toBig();
+	function toBig(){
+		for(var i=0; i<len; i++){
+			var dis=Math.abs(oDiv.offsetWidth/2-(aLi[i].offsetWidth/2+aLi[i].offsetLeft+oUl.offsetLeft));
+			var scale=1-dis/800;
+			 scale<0.5 && (scale=0.5);
+			 //aSpan[i].innerHTML=scale.toFixed(2);
+			 aImg[i].style.width=scale*520+'px';
+			 aImg[i].style.height=scale*360+'px';
+			 aImg[i].style.marginLeft=-(aImg[i].offsetWidth-260)/2+'px';
+			 aImg[i].style.marginTop=-(aImg[i].offsetHeight-180)/2+'px';
+			 aLi[i].style.zIndex=parseInt(scale*10000);
+			 aLi[i].style.opacity=scale;
+		}	
+	}	
+};
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<ul>
+        	<li><img src="images/1.jpg"/></li>
+            <li><img src="images/2.jpg"/></li>
+            <li><img src="images/3.jpg"/></li>
+            <li><img src="images/4.jpg"/></li>
+            <li><img src="images/5.jpg"/></li>
+            <li><img src="images/6.jpg"/></li>
+
+        </ul>
+        <div id="line">拖动查看图片</div>
+    </div>
+</body>
+</html>

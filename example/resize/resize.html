@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>自由改变大小</title>
+<style>
+#box{position:absolute; left:200px; top:100px; width:300px; height:200px; background:rgb(3,54,75); }
+#box .rt{position:absolute; right:0; top:0; width:20px; height:20px; background:rgb(3,22,52);  z-index:3;}
+#box .lb{position:absolute; left:0; bottom:0; width:20px; height:20px; background:rgb(3,22,52);  z-index:3;}
+#box .rb{position:absolute; right:0; bottom:0; width:20px; height:20px; background:rgb(3,22,52);  z-index:3;}
+#box .lt{position:absolute; left:0; top:0; width:20px; height:20px;background:rgb(3,22,52);  z-index:3;}
+#box .l{position:absolute; left:0; top:0; width:20px; height:100%; background:rgb(205,179,128);}
+#box .b{position:absolute; left:0; bottom:0; height:20px; width:100%; background:rgb(205,179,128);}
+#box .r{position:absolute; right:0; top:0; width:20px; height:100%; background:rgb(205,179,128);}
+#box .t{position:absolute; left:0; top:0; width:100%; height:20px; background:rgb(205,179,128);}
+</style>
+<script>
+window.onload=function(){
+	
+	var oDiv=document.getElementById('box');
+	var aDiv=oDiv.children;
+	
+	for(var i=0; i<aDiv.length; i++){
+		drag(aDiv[i]);
+	}
+	
+	function drag (obj){
+		obj.onmousedown=function(ev){
+			var oEv=ev || event;
+			
+			var oldX=oEv.clientX;
+			var oldY=oEv.clientY;
+			
+			var oldWidth=oDiv.offsetWidth;
+			var oldHeight=oDiv.offsetHeight;
+			
+			var oldLeft=oDiv.offsetLeft;
+			var oldTop=oDiv.offsetTop;
+		
+			document.onmousemove=function(ev){
+				var oEv= ev || event;
+				var disX=oEv.clientX-oldX;
+				var disY=oEv.clientY-oldY;
+				
+				if(obj.className.indexOf("l") !=-1){
+					
+						oDiv.style.width=oldWidth-disX+'px';	
+					
+						oDiv.style.left=oldLeft+disX+'px';
+
+				}
+				
+				 if(obj.className.indexOf("b") !=-1){
+					
+					oDiv.style.top=oldTop+'px';
+					oDiv.style.height=oldHeight+disY+'px';
+					
+				}
+				
+				if(obj.className.indexOf("r") !=-1){
+					
+					oDiv.style.left=oldLeft+'px';
+					oDiv.style.width=oldWidth+disX+'px';
+					
+				}
+				
+				 if(obj.className.indexOf("t") !=-1){
+					
+					oDiv.style.top=oldTop+disY+'px';
+					oDiv.style.height=oldHeight-disY+'px';
+				}
+
+			};
+			
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				oDiv.releaseCapture && oDiv.releaseCapture();	
+			};
+			oDiv.setCapture && oDiv.setCapture();
+			return false;
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<div class="lb"></div>
+        <div class="lt"></div>
+        <div class="rt"></div>
+        <div class="rb"></div>
+        <div class="l"></div>
+        <div class="b"></div>
+        <div class="r"></div>
+        <div class="t"></div>
+    </div>
+</body>
+</html>

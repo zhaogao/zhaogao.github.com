@@ -1,0 +1,1595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>美丽说</title>
+	<link rel="stylesheet" href="css/base.css" type="text/css"/>
+	<link rel="stylesheet" href="css/index.css" type="text/css" />
+ <script src="yun1.js"></script>
+ <script>
+window.onload=function(){
+	var oBnerWindow=document.getElementById('banner_window');
+	var aBul=oBnerWindow.getElementsByTagName('ul')[0];
+	var aBLi=aBul.getElementsByTagName('li');
+	var oClnav=document.getElementById('clnav');
+	var aLi=oClnav.children;
+	var oPre=document.getElementById('btn_le');
+	var oNext=document.getElementById('btn_ri');
+	var iNow=0;
+	var len=aLi.length;
+	//alert(aBLi.length);
+	
+
+	aBul.innerHTML +=aBul.innerHTML;
+	aBul.style.width=aBLi[0].offsetWidth*aBLi.length+'px';
+	var w=aBLi[0].offsetWidth*aBLi.length/2;
+	
+	oPre.onclick=function(){
+		iNow--;
+		tab();			
+	};
+
+	oNext.onclick=next;
+	var timer=setInterval(next,2000);
+
+	oBnerWindow.onmouseover=function(){
+		clearInterval(timer);	
+	};
+	oBnerWindow.onmouseout=function(){
+		timer=setInterval(next,2000);	
+	};
+	
+	function next (){
+		iNow++;
+		tab();	
+	}
+	
+	for(var i=0; i<len; i++){
+		(function(index){
+			aLi[i].onclick=function(){
+			if(aLi[0].className=='cur' && index==len-1){
+				iNow--;
+			}else if(aLi[len-1].className=='cur' && index==0){
+				iNow++;
+			}else{
+				iNow=Math.floor(iNow/len)*len+index;
+			}
+				tab();
+			};
+		})(i);
+	}
+	
+	function tab(){
+		for(var i=0; i<aLi.length; i++){
+				aLi[i].className='';
+			}
+		if(iNow<0){
+			aLi[(iNow%len+len)%len].className='cur';
+		}else{
+			aLi[iNow%len].className='cur';
+		}
+			move(aBul,-aBLi[0].offsetWidth*iNow,1500);
+
+	}
+	
+	
+	
+
+
+	
+var left=0;
+	
+	function move (obj,iTarget,time){
+		var start=left;
+		var dis=iTarget-start;
+		var n=0;
+		var count=time/30;
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			n++;
+			var a=1-n/count;
+			var cur=start+dis*(1-a*a*a);
+			left=cur;
+			if(left>0){
+			obj.style.left=left%w-w+'px';	
+			}else{
+			obj.style.left=left%w+'px';	
+			}
+			if(count==n){
+			clearInterval(obj.timer);	
+			}	
+		},30);	
+	}
+	
+
+};
+ </script>
+</head>
+<body>
+	<!-- 头开始 -->
+	<div class="uinfo_bar">
+		<div class="wrapper_content">
+				<div class="header_box">
+    	 <div class="header_con"><!--header_con begin-->
+          <ul class="right clearfix">
+          	<li class="first"><a href=""><em class="em1"></em><span>微信登陆</span></a></li>
+            <li><a href=""><em class="em2"></em><span>QQ登陆</span></a></li>
+            <li><a href=""><span>登陆</span></a></li>
+            <li><a href=""><span>注册</span></a></li>
+            <li><a href=""><em class="em3"></em><span>我的购物车</span><b>0</b></a></li>
+            <li><a href=""><em class="em4"></em><span>我的订单</span></a></li>
+            <li><a href=""><em class="em5"></em><span>下载App</span></a></li>
+            <li class="last"><a href=""><span>帮助中心</span></a></li>
+          </ul>
+         </div><!--header_con end-->
+    </div><!--header_box end-->
+    <div class="search_box ">
+    	 <div class="search_con clearfix">
+           <h1 class="left"><a href="">美丽说</a></h1>
+           
+           <div class="search_int clearfix left">
+                <div class="search_list left">
+                  <span class="cur">宝贝</span>
+               <ul>
+           	   <li><a href="">宝贝</a></li>
+               <li><a href="">商家</a></li>
+               <li><a href="">杂志</a></li>
+               <li><a href="">用户</a></li>
+             </ul>
+             <div class="arrow"></div>
+           </div>
+           <div class="jing left"><span></span></div>
+             <div class="input_icon left clearfix">
+               <input type="text"  class="left sear_input" />
+               <input type="button"  value="搜索" class="left sear_button" />
+               </div>
+              </div> 
+    	</div><!--search_con end-->
+    </div><!--search_box end-->
+    <div class="nav_box">
+    	 <div class="nav_con">
+           <ul class="clearfix">
+             <li class="first"><a href="">首页</a></li>
+             <li><a href="">今日最热</a></li>
+             <li><a href="">衣服<em class="em_shows"></em></a></li>
+             <li><a href="">鞋子</a></li>
+             <li><a href="">衣服</a></li>
+             <li><a href="">鞋子</a></li>
+             <li><a href="">衣服</a></li>
+             <li><a href="">鞋子</a></li>
+             <li><a href="">衣服</a></li>
+             <li><a href="">鞋子</a></li>
+             <li><a href="">衣服</a></li>
+             <li><a href="">鞋子</a></li>
+             <li><a href="">福利社<em class="em_fuli"></em></a></li>
+           </ul>
+        </div><!--nav_con end-->
+    </div><!--nav_box end-->
+    
+    	 <div id="banner_window" class="banner_window">
+            <div class="side_btn">
+            	<span id="btn_le" class="btn_le"></span>
+                <span id="btn_ri" class="btn_ri"></span>
+            </div>
+
+           <ul>
+           	  <li ><a style="background-image:url(images/header1.jpg);"href=""></a></li>
+              <li class="active"><a style="background-image:url(images/header2.jpg);"href=""></a></li>
+              <li ><a style="background-image:url(images/header3.jpg);"href=""></a></li>
+              <li><a style="background-image:url(images/header4.jpg);"href=""></a></li>
+              <li><a style="background-image:url(images/header5.jpg);"href=""></a></li>
+     	   </ul>
+         </div>
+        <div class="sider_box">
+        	<div class="side_left">
+            	<ul>
+            			<li>
+                    	<div class="sixi_left">
+                        	<h2><a href="">
+                            <span></span>
+                            最热
+                            </a>
+                            </h2>
+                        	<div class="sixi_icon">
+                                <a class="hd" href="">春季新款</a>
+                                <a href="">T夕</a>
+                                <a href="">活力运动鞋</a>
+                                <a href="">连衣裙</a>
+                                <a class="hd" href="">至in牛仔裤</a>
+                                <a href="">单肩包</a>
+                                <a href="">薄款外套</a>
+                                <a href="">甜美小单鞋</a>
+                            </div>
+                            <div class="sixi_right">></div>
+                           
+                        </div> 
+                          <div class="li_box"> <span>衣服</span> 
+                        <span>衣服</span><span>衣服</span><span>衣服</span></div>
+                    </li>
+                    	<li>
+                    	<div class="sixi_left">
+                        	<h2><a href="">
+                            <span></span>
+                            最热
+                            </a>
+                            </h2>
+                        	<div class="sixi_icon">
+                                <a class="hd" href="">春季新款</a>
+                                <a href="">T夕</a>
+                                <a href="">活力运动鞋</a>
+                                <a href="">连衣裙</a>
+                                <a class="hd" href="">至in牛仔裤</a>
+                                <a href="">单肩包</a>
+                                <a href="">薄款外套</a>
+                                <a href="">甜美小单鞋</a>
+                            </div>
+                            <div class="sixi_right">></div>
+                            
+                        </div> 
+                        <div class="li_box"> <span>衣服</span> 
+                        <span>衣服</span><span>衣服</span><span>衣服</span></div>
+                    </li>
+                    	<li>
+                    	<div class="sixi_left">
+                        	<h2><a href="">
+                            <span></span>
+                            最热
+                            </a>
+                            </h2>
+                        	<div class="sixi_icon">
+                                <a class="hd" href="">春季新款</a>
+                                <a href="">T夕</a>
+                                <a href="">活力运动鞋</a>
+                                <a href="">连衣裙</a>
+                                <a class="hd" href="">至in牛仔裤</a>
+                                <a href="">单肩包</a>
+                                <a href="">薄款外套</a>
+                                <a href="">甜美小单鞋</a>
+                            </div>
+                            <div class="sixi_right">></div>
+                           
+                        </div> 
+                          <div class="li_box"> <span>衣服</span> 
+                        <span>衣服</span><span>衣服</span><span>衣服</span></div>
+                    </li>
+                    	<li>
+                    	<div class="sixi_left">
+                        	<h2><a href="">
+                            <span></span>
+                            最热
+                            </a>
+                            </h2>
+                        	<div class="sixi_icon">
+                                <a class="hd" href="">春季新款</a>
+                                <a href="">T夕</a>
+                                <a href="">活力运动鞋</a>
+                                <a href="">连衣裙</a>
+                                <a class="hd" href="">至in牛仔裤</a>
+                                <a href="">单肩包</a>
+                                <a href="">薄款外套</a>
+                                <a href="">甜美小单鞋</a>
+                            </div>
+                            <div class="sixi_right">></div>
+                        </div> 
+                         <div class="li_box"> <span>衣服</span> 
+                        <span>衣服</span><span>衣服</span><span>衣服</span></div>
+                    </li>
+                		<li class="last active" >
+                    	<div class="sixi_left">
+                        	<h2><a href="">
+                            <span></span>
+                            最热
+                            </a>
+                            </h2>
+                        	<div class="sixi_icon">
+                                <a class="hd" href="">春季新款</a>
+                                <a href="">T夕</a>
+                                <a href="">活力运动鞋</a>
+                                <a href="">连衣裙</a>
+                                <a class="hd" href="">至in牛仔裤</a>
+                                <a href="">单肩包</a>
+                              
+                            </div>
+                            <div class="sixi_right">></div>
+                        </div> 
+                         <div class="li_box"> <span>衣服</span> 
+                        <span>衣服</span><span>衣服</span><span>衣服</span></div>
+                    </li>
+                   
+            	</ul>
+            </div>
+             
+         
+        
+              <div class="banner_ad right">
+           		<a href=""><img src="images/aad.png" /></a>
+               </div>
+               <div class="banner_icon right">
+            	<ul class="clearfix">
+                	<li><a href=""><img src="images/ad1.png" /></a></li>
+                    <li><a href=""><img src="images/ad1.png" /></a></li>
+                    <li><a href=""><img src="images/ad1.png" /></a></li>
+                    <li><a href=""><img src="images/ad1.png" /></a></li>
+            	</ul>
+            </div>
+             
+            <div class="sider_ol">
+            	<ol id="clnav" class="clearfix">
+                	<li class="cur"></li>
+                    <li ></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+  
+            	</ol>
+            </div>
+            <div class="side_right">
+            	<ul>
+                	<li><a href=""><img src="images/sider1.png" /></a></li>
+                    <li><a href=""><img src="images/sider2.png" /></a></li>
+                    <li><a href=""><img src="images/sider3.png" /></a></li>
+            	</ul>
+            </div>
+        </div>
+		
+	</div>
+	<!-- banner结束  -->
+    <!--content 开始-->
+    <div class="content clearfix">
+   		<div class="cdanpin left">
+        	<div class="cdanpin_top clearfix">
+             
+             <h2 class="dib" ></h2>	
+            </div>
+            <div class="cdanpin_qc">
+            <ul class="clearfix">
+            	<li>
+                  <a href=""><img src="img/cdan1.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">软妹别跑 快看这款手拿包</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/gc1.jpg"/></a>
+                  <div class="cdan_xi">
+                    <a href="">4折潮流显瘦套装 2色4码任你选</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan3.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">明星同款厚底鞋 进店满减还包邮</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan4.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">显瘦桃花美裙 人气疯抢3折包邮</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan5.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">春夏必备可爱珍珠淑女发箍</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan6.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">不挑身材宽松牛仔裤 限时特价ing</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan7.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">天然超强补水，巨型一号 丝瓜水（买一送一）</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan8.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">滋润保湿一整天！菲诗小铺 金盏花护肤套装</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan9.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">每天10分钟，安全瘦身不反弹~渲美 硅胶瘦身刷</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan10.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">毛孔瞬间隐形！玻儿 毛孔达人隐形膏20g</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan11.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">遮瑕力No.1！谜尚 经典大红BB霜</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/cdan12.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">口红也能萌萌哒~Hello Kitty 口红3.5g</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                
+            </ul>
+            </div>
+        </div>
+        <div class="ctuangou left">
+        	<div class="ctuangou_top">
+            
+             <h2 class="dib" ></h2>	
+            </div>
+            <div class="ctuangou_qu">
+            <ul>
+            	<li>
+                  <a class="dib" href=""><img src="img/tuangou170.jpg"/></a>
+                  <div class="cdan_xi">
+                    <a href="">K0437#连体裤</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/ctuan2.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">春季新款细带尖头高跟</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/ctu3.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">七分袖系带格子连衣裙</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/ctu4.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">春季复古小包萝莉包</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/ctu5.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">眼睛刺绣衬衣</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+                <li>
+                  <a href=""><img src="img/ctu6.png"/></a>
+                  <div class="cdan_xi">
+                    <a href="">7双盒装糖果色女隐形</a>
+                  </div>
+                  <span class="db price">￥74.00<em>￥198.00</em></span>
+                  <span class="db"><b>173</b>人已购买</span>
+                </li>
+            </ul> 
+            </div> 
+        </div>
+        <div class="cad left">
+               	<div class="cad_box">
+              <ul>
+              	<li><a href=""><img src="img/ccad.png"/></a></li>
+                <li><a href=""><img src="img/ccad2.png"/></a></li>
+              </ul>
+              <ol>
+              	<li class="active"></li>
+                <li></li>
+              </ol>
+            </div>
+        </div>
+              <div class="citem left clothes clearfix">
+        	<div class="citem_top left clearfix">
+            	<span class="dib tb left"></span>
+                <span class="dib td left">今日上新<strong>4584</strong>件</span>
+                <a class="dib right" href="#">查看所有衣服 &gt;</a>
+            </div>
+            <div class="citem_left left">
+            	<ul class="clearfix">
+            	    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem3.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem4.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem5.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem6.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem7.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem8.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem9.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem10.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+               </ul>
+               <ol class="clearfix">
+                       		<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix last">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+               </ol>
+            </div>
+            <div class="citem_right right">
+            	<div class="citem_righttop  clearfix">
+                	<h3 class="left">最热衣服好店</h3>
+                    <a class="right" href="">更多好店&gt;</a>
+                </div>
+                <ul >
+                	<li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                     <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                      <li class="clearfix last">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+              <div class="citem left shoes clearfix">
+        	<div class="citem_top left clearfix">
+            	<span class="dib tb left"></span>
+                <span class="dib td left">今日上新<strong>4584</strong>件</span>
+                <a class="dib right" href="#">查看所有衣服 &gt;</a>
+            </div>
+            <div class="citem_left left">
+            	<ul class="clearfix">
+            	    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/shoes2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+               </ul>
+               <ol class="clearfix">
+                       		<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix last">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+               </ol>
+            </div>
+            <div class="citem_right right">
+            	<div class="citem_righttop  clearfix">
+                	<h3 class="left">最热衣服好店</h3>
+                    <a class="right" href="">更多好店&gt;</a>
+                </div>
+                <ul >
+                	<li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                      <li class="clearfix last">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+              <div class="citem left bag clearfix">
+        	<div class="citem_top left clearfix">
+            	<span class="dib tb left">包包</span>
+                <span class="dib td left">今日上新<strong>4584</strong>件</span>
+                <a class="dib right" href="#">查看所有衣服 &gt;</a>
+            </div>
+            <div class="citem_left left">
+            	<ul class="clearfix">
+            	    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+               </ul>
+               <ol class="clearfix">
+                       		<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix last">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+               </ol>
+            </div>
+            <div class="citem_right right">
+            	<div class="citem_righttop  clearfix">
+                	<h3 class="left">最热衣服好店</h3>
+                    <a class="right" href="">更多好店&gt;</a>
+                </div>
+                <ul >
+                	<li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                      <li class="clearfix last">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+              <div class="citem left ornament clearfix">
+        	   <div class="citem_top left clearfix">
+            	<span class="dib tb left"></span>
+                <span class="dib td left">今日上新<strong>4584</strong>件</span>
+                <a class="dib right" href="#">查看所有衣服 &gt;</a>
+            </div>
+            <div class="citem_left left">
+            	<ul class="clearfix">
+            	    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db ornament1" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/ornament1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+               </ul>
+               <ol class="clearfix">
+                       		<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix last">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+               </ol>
+            </div>
+            <div class="citem_right right">
+            	<div class="citem_righttop  clearfix">
+                	<h3 class="left">最热衣服好店</h3>
+                    <a class="right" href="">更多好店&gt;</a>
+                </div>
+                <ul >
+                	<li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                      <li class="clearfix last">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+              <div class="citem left home_furnishing clearfix">
+        	<div class="citem_top left clearfix">
+            	<span class="dib tb left"></span>
+                <span class="dib td left">今日上新<strong>4584</strong>件</span>
+                <a class="dib right" href="#">查看所有衣服 &gt;</a>
+            </div>
+            <div class="citem_left left">
+            	<ul class="clearfix">
+            	    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju1.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju2.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju3.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju4.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju5.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju6.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju7.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju8.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/jiaju9.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+                    	<li>
+                    <a class="db citem_tu" href="">
+                    <img src="img/citem10.png" />   
+                    <div class="ctu_bg">春季必选春季美裙</div>
+                     </a>                  
+                    </li>
+               </ul>
+               <ol class="clearfix">
+                       		<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+                    	<li class="clearfix last">
+                    	<h3 class="left"><a href="">上衣</a></h3>
+                        <p class="left">
+                        <a href="#">背心</a>
+                        <a href="#">针织衫</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">寸衫</a>
+                        <a href="#">卫衣</a>
+                        <a href="#">情侣装</a>
+                        <a href="#">外套</a>
+                        <a href="#">韩范儿T恤</a>
+                        <a href="#">打底衫</a>
+                        <a href="#">马甲</a>
+                        </p>
+                    </li>
+               </ol>
+            </div>
+            <div class="citem_right right">
+            	<div class="citem_righttop  clearfix">
+                	<h3 class="left">最热衣服好店</h3>
+                    <a class="right" href="">更多好店&gt;</a>
+                </div>
+                <ul >
+                	<li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                      <li class="clearfix last">
+                    <a class="db left ul_left" href=""><img src="img/ul ce1.png" /></a>
+                    <div class="ul_right left">
+                    	<a href="">whatever女装店</a>
+                        <p><strong>331</strong>件商品/总销量<b>133485</b></p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+      <div class="cmage left clearfix">
+            <div class="cmage_top left">
+          	<h3></h3>
+            <ul class="right clearfix">
+            	<li><a href="">欧美</a></li>
+                <li><a href="">甜美</a></li>
+                <li><a href="">复古</a></li>
+                <li><a href="">个性</a></li>
+                 <li><a href="">甜美</a></li>
+                <li><a href="">复古</a></li>
+                <li><a href="">个性</a></li>
+                <li class="last"><a href="">更多杂志&gt;</a></li>
+            </ul>
+          </div>
+           <div class="cmage_item left mr15">
+             <h4><a href="">小女人有恋物癖</a></h4>
+             <a href=""><img src="img/mage1.png" /></a>
+             <div class="cmlook clearfix">
+             	<span class="left" ><b>2475</b>个分享</span>
+                <a class="right" href="">去看看</a>
+             </div>
+          </div>
+           <div class="cmage_item left mr15">
+             <h4><a href="">怪诞文艺腔</a></h4>
+             <a href=""><img src="img/mage2.png" /></a>
+             <div class="cmlook clearfix">
+             	<span class="left" ><b>2475</b>个分享</span>
+                <a class="right" href="">去看看</a>
+             </div>
+          </div>
+           <div class="cmage_item left mr15">
+             <h4><a href="">每个人有他的脾气</a></h4>
+             <a href=""><img src="img/mage3.png" /></a>
+             <div class="cmlook clearfix">
+             	<span class="left" ><b>2475</b>个分享</span>
+                <a class="right" href="">去看看</a>
+             </div>
+          </div>
+           <div class="cmage_item left mr15">
+             <h4><a href="">craft</a></h4>
+             <a href=""><img src="img/mage4.png" /></a>
+             <div class="cmlook clearfix">
+             	<span class="left" ><b>2475</b>个分享</span>
+                <a class="right" href="">去看看</a>
+             </div>
+          </div>
+            <div class="cmage_item left ">
+             <h4><a href="">=小宅</a></h4>
+             <a href=""><img src="img/mage5.png" /></a>
+             <div class="cmlook clearfix">
+             	<span class="left" ><b>2475</b>个分享</span>
+                <a class="right" href="">去看看</a>
+             </div>
+          </div>
+      </div><!--cmage end-->
+   </div><!--content end-->
+     <!--content 开始-->
+	<!-- 头部开始 -->
+	<div class="footer">
+		<div class="wrapper_content footer_box clearfix">
+			<div class="footer_first left ">
+	        			<div class="phone">400-800-577</div>
+				<div class="kefu">美丽说客服热线</div>
+				<p>周一至周日：08:00-24:00</p>
+			</div>
+			<ul class="clearfix left">
+				<li>
+					<h3>买家帮助</h3>
+					<div class="fuwu"><a href="javascript:;">新手指南</a></div>
+					<div class="fuwu"><a href="javascript:;">服务保障</a></div>
+					<div class="fuwu"><a href="javascript:;">帮助中心</a></div>
+					
+				</li>
+		    		<li>
+					<h3>商家帮助</h3>
+					<div class="fuwu"><a href="javascript:;">新手指南</a></div>
+					<div class="fuwu"><a href="javascript:;">服务保障</a></div>
+					<div class="fuwu"><a href="javascript:;">帮助中心</a></div>
+					
+				</li>
+				<li>
+					<h3>关于我们</h3>
+					<div class="fuwu"><a href="javascript:;">新手指南</a></div>
+					<div class="fuwu"><a href="javascript:;">服务保障</a></div>
+					<div class="fuwu"><a href="javascript:;">帮助中心</a></div>
+					
+				</li>
+		    		<li>
+					<h3>关注我们</h3>
+					<div class="fuwu guanzhu"><a href="javascript:;">新手指南</a></div>
+					<div class="fuwu guanzhu"><a href="javascript:;">服务保障</a></div>
+					<div class="fuwu guanzhu"><a href="javascript:;">帮助中心</a></div>
+					
+				</li>
+		
+			</ul>
+		 <div class="saoma left">
+				    <h3>美丽说微信服务号</h3>
+				    <div>
+				    	<a href="javascript:;"><img src="img/m_ewm.png" alt="" /></a>
+				    </div>
+				</div>
+		<div class="kehuduan right">
+				<h3>美丽说客户端下载</h3>
+					<div class="">
+						<a href="javascript:;"><img src="img/m_kfd.png" alt="" /></a>
+					</div>
+			</div>	
+		</div>
+		<div class="link wrapper_content clearfix">
+			<span class="left">友情链接:</span> 
+			<div class="link_con left">
+				<a href="javascript:;">腾讯女性</a>
+				<a href="javascript:;">列表网</a>
+				<a href="javascript:;">太平洋女性网</a>
+				<a href="javascript:;">七丽女性网</a>
+				<a href="javascript:;">七丽女性网</a>
+				<a href="javascript:;">七丽女性网</a>
+				<a href="javascript:;">七丽女性网</a>
+				<a href="javascript:;">七丽女性网</a>
+			</div>
+			<div class="more right"><a href="javascript:;">更多&gt;</a></div>
+
+		</div>
+		<div class="wrapper_content">	
+				<p>Copyright ©2015 Meilishuo.com  电信与信息服务业务经营许可证100798号  企业法人营业执照  		京ICP备11031139号  京公网安备110108006045 </p>
+					<p>客服邮箱：kf@meilishuo.com  客服电话：4000-800-577  文明办网文明上网举报电话：010-82615762  违法不良信息举报中心
+						<a href="javascript:;"> 我最喜爱的人民警察评选&gt;&gt;</a>
+					</p>
+		</div>
+	</div>
+	<!-- 头部结束 -->
+</body>
+</html>

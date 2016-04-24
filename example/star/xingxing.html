@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>星星评分</title>
+	<style>
+*{margin:0; padding:0; list-style:none;}
+#box {width:150px; height:27px; margin:30px auto;}
+#box  li{float:left; width:27px; height:25px; background:url(img/star.gif) no-repeat 0 -1px;}
+#box  li.cur{background:url(img/star.gif) no-repeat 0 -30px;}
+
+
+#ul1 {width:150px; margin:60px auto;}
+#ul1 li{float:left;width:14px; height:27px; background:url(img/star.gif) no-repeat;}
+#ul1 li.l{ background-position:0 0;}
+#ul1 li.r{ background-position:-14px 0;}
+
+#ul1 li.la{ background-position:0 -29px;}
+#ul1 li.ra{ background-position:-14px -29px;}
+</style>
+	<script>
+window.onload=function(){
+		var aUl=document.getElementById('box');
+		var aLi=aUl.getElementsByTagName('li');
+		//alert(10);
+		var bClick=true;
+		for (var i=0; i<aLi.length; i++){
+			
+			(function(index){
+			aLi[i].onmouseover=function(){
+				if(bClick==true){
+					
+				for(var i=0; i<aLi.length; i++){
+					if(i<=index){
+					aLi[i].className='cur';
+					}else{
+					aLi[i].className='';	
+					}
+				}
+				}
+			};
+			
+	
+			
+			aLi[i].onclick=function(){
+				if(bClick==true){
+					bClick=false;
+					alert(index+"分");
+				}
+			};
+		})(i);
+
+			aLi[i].onmouseout=function(){
+				if(bClick==true){
+					for(var i=0; i<aLi.length; i++){	
+						aLi[i].className='';
+					}
+				}
+			};
+		}
+
+(function(){
+	var oUl = document.getElementById("ul1");
+	var aLi = oUl.getElementsByTagName("li");	
+	
+	
+	var bClick=true;
+	
+	for(var i=0; i<aLi.length; i++){
+		(function (index){
+			aLi[i].onmouseover=function(){
+				if(bClick==true){
+					for(var i=0; i<aLi.length; i++){
+						if(i<=index){
+							if(i%2==0){
+								aLi[i].className='la';
+							}else{
+								aLi[i].className='ra';
+							}
+							
+						}
+					}
+				}
+			};
+			
+			aLi[i].onmouseout=function(){
+				if(bClick==true){
+					for(var i=0; i<aLi.length; i++){
+						if(i<=index){
+							if(i%2==0){
+								aLi[i].className='l';
+							}else{
+								aLi[i].className='r';
+							}
+							
+						}
+					}
+				}
+
+			};
+			
+			aLi[i].onclick=function(){
+				if(bClick==true){
+					alert(index/2+0.5+"分");	
+					bClick=false;
+				}	
+			};	
+				
+		})(i);	
+	}
+})();
+};
+</script></head>
+
+<body>
+	<ul id="box">
+		<li  ></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<ul id="ul1">
+		<li class="l"></li>
+		<li class="r"></li>
+		<li class="l"></li>
+		<li class="r"></li>
+	    <li class="l"></li>
+		<li class="r"></li>
+	    <li class="l"></li>
+		<li class="r"></li>
+	    <li class="l"></li>
+		<li class="r"></li>
+</ul>
+</body>
+</html>

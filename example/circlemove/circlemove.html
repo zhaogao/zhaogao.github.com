@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>圆形运动</title>
+<style>
+body{background:rgb(3,101,100);}
+#div1{position:absolute; left:500px; top:100px; width:400px; height:400px; border:1px solid black; border-radius:50%;}
+#div1 img{width:100px; height:100px;  border-radius:50%; position:absolute; left:50%; top:0; margin:-50px;}
+ span{position:absolute; left:660px ;top:280px; font-size:18px; color:#fff; cursor:pointer;}
+</style>
+<script>
+function a2l (n){
+	return n*Math.PI/180;	
+}
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	var N=10;
+	var timer=null;
+	var R=oDiv.offsetWidth/2;
+	
+	for(var i=0; i<N; i++){
+		var oImg=document.createElement('img');
+		oImg.src='../picturewall/img/'+(i+1)+'.jpg';
+		oDiv.appendChild(oImg);
+	}
+	var aImg=oDiv.children;
+	var bClick=false;
+	document.onclick=function(){
+		bClick=!bClick;
+		if(bClick){
+			for(var i=0; i<N; i++){
+				var a=360/N*i;
+				move(aImg[i],a);
+				
+			}
+			
+		}else{
+			for(var i=0; i<N; i++){
+				move(aImg[i],0);	
+			}
+		}
+	};
+	
+	function move (obj,iTarget){
+		var start=obj.a || 0;
+		var time=1000;
+		var count=Math.round(time/30);
+		var n=0;
+		var dis=iTarget-start;
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			n++;
+			
+			var cur=start+dis*n/count;
+			obj.a=cur;
+			obj.style.left=R+Math.sin(a2l(cur))*R+'px';
+			obj.style.top=R-Math.cos(a2l(cur))*R+'px';
+			
+			if(n==count){
+				clearInterval(obj.timer);
+			}	
+		},30);
+	}
+};
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	
+    </div>
+    <span>点我有惊喜</span>
+</body>
+</html>

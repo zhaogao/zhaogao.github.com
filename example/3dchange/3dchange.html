@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>三维图片轮换</title>
+<link href="zns_style.css" rel="stylesheet" />
+<script src="yun1.js"></script>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('znsRotatePic');
+	var aLi=oUl.getElementsByTagName('li');
+	var aImg=oUl.getElementsByTagName('img');
+	var arrLi=[];
+	var aFn=[];
+	var zIndex=1;
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		arrLi[i]={
+			left: aLi[i].offsetLeft,
+			top: aLi[i].offsetTop,
+			opacity: parseFloat(getStyle(aLi[i],'opacity'))
+		};
+	}
+
+			aLi[2].onclick=function()
+			{
+
+				arrLi.unshift(arrLi.pop());
+				
+				aFn.unshift(aFn.pop());
+				for(var i=0;i<aLi.length;i++)
+				{
+					yun(aLi[i],arrLi[i]);
+					aLi[i].style.zIndex +=zIndex;
+					
+					aLi[i].onclick=aFn[i];
+				}
+			};
+			
+			aLi[0].onclick=function()
+			{
+
+				arrLi.push(arrLi.shift());
+
+				aFn.push(aFn.shift());
+				for(var i=0;i<aLi.length;i++)
+				{
+					yun(aLi[i],arrLi[i]);
+					
+					aLi[i].style.zIndex +=zIndex;
+					
+					aLi[i].onclick=aFn[i];
+				}
+			};
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aFn[i]=aLi[i].onclick;
+	}
+	
+};
+</script>
+</head>
+
+<body>
+
+<ul id="znsRotatePic">
+	<li class="pic1">
+		<img src="images/1.jpg" alt="pic1" class="unactive" />
+		
+	</li>
+	<li class="pic2">
+		<img src="images/2.jpg" alt="pic2" />
+		
+	</li>
+	<li class="pic3">
+		<img src="images/3.jpg" alt="pic3" class="unactive"  />
+	
+	</li>
+</ul>
+
+</body>
+</html>

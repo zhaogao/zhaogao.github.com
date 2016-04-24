@@ -1,0 +1,66 @@
+.clearfix:after{display: block;content:'';clear: both;}
+.clearfix{zoom:1;}
+.left{float: left;}
+.right{float: right;}
+.dn{display: none;}
+.db{display: block;}
+.dib{display: inline-block;}
+.tc{text-align: center;}
+.tl{text-align: left;}
+.tr{text-align: right;}
+.ovh{overflow: hidden;}
+.cl{clear: both;}
+.bdt{border-top: none;}
+.bdr{border-right: none;}
+.bdb{border-bottom: none;}
+.bdl{border-left: none;}
+
+input {outline:none; border:none; border:0;}
+a img{border: none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{color:#666;font-size:12px;font-family:Arial;font:12px/1 'microsoft yahei';}
+a:link,a:visited{text-decoration: none;color: #333;}
+a:hover{color: #699f00;  } 
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+input,img{vertical-align:middle}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%;}
+/*基本快*/
+
+
+.mr11{margin-right: 11px;}
+.mr20 {margin-right:20px;}
+.mr34 {margin-right:34px;}
+
+.mt15 {margin-top:15px;}
+.mt20 {margin-top:20px;}
+.mt25 {margin-top:25px;}
+.mt48 {margin-top:48px;}
+
+.mb15{margin-bottom: 15px;}
+.mb25{margin-bottom: 25px;}
+.mb38{margin-bottom: 38px;}
+.mb50{margin-bottom: 50px;}
+
+.pt12{padding-top: 12px;}
+
+
+/*基本快*/
+
+
+
+
+
+
+
+
+
+  

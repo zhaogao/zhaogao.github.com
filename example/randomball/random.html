@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>随机漂浮变色大小</title>
+<style>
+body,html{height:100%;  _background:#b0dfb3;}
+#window{position:relative; width:700px; height:100%; margin:50px auto; _border:1px solid red; overflow:hidden;}
+#window span{position:absolute; left:0; top:500px; width:80px; height:80px;  opacity:0.8; filter:alpha(opacity:80); background:#f0f; border-radius:50%; text-align:center; color:#fff; font-weight:bold;}
+#window span:hover{opacity:1; filter:alpha(opacity:100);  cursor:pointer; color:#000;};
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('window');
+	
+	var aSpan=oDiv.getElementsByTagName('span');
+	
+	for(var i=0; i<aSpan.length; i++){
+		aSpan[i].pause=1;
+		setPos(aSpan[i]);
+		
+		aSpan[i].onmouseover=function(){
+			this.pause=0;	
+		};
+		
+		aSpan[i].onmouseout=function(){
+			this.pause=1;	
+		};
+		
+	}
+	
+	setInterval(startMove,30);
+
+		function startMove (){
+			//alert(2);
+			for(var i=0; i<aSpan.length; i++){
+				if(aSpan[i].pause){
+					domove(aSpan[i]);
+				}
+			}	
+		}
+	
+	function domove(obj)
+	
+	{
+		if(obj.offsetTop<=-obj.offsetHeight)
+		{
+			obj.style.top=oDiv.offsetHeight+"px";
+			setPos(obj);
+		}
+		else
+		{
+			obj.style.top=(parseInt(getStyle(obj,'top'))-obj.foot)+"px";	
+		}
+	}
+	
+	function setPos (obj){
+		var iLeft=parseInt(Math.random()*oDiv.offsetWidth);
+		var scal=Math.random()*0.5+1;
+		var iTimer=parseInt(Math.random()*1500);
+	
+		obj.pause=0;
+		var scale=Math.random()*1+0.5;
+		obj.style.width=100*scale+'px';
+		obj.style.height=100*scale+'px';
+		obj.style.lineHeight=obj.offsetHeight+'px';
+		var r=mathRad(0,256);
+		var g=mathRad(0,256);
+		var b=mathRad(0,256);
+		obj.style.background='rgb('+r+','+g+','+b+')';
+		if((iLeft-obj.offsetWidth)>0){
+			obj.style.left=iLeft-obj.offsetWidth+'px';
+		}else{
+			obj.style.left=iLeft+'px';
+		}
+		
+		clearTimeout(obj.timer);
+		obj.timer=setTimeout(function(){
+			obj.pause=1;	
+		},iTimer);
+		
+		obj.foot=Math.ceil(Math.random()*4)+1;
+		
+	}
+
+	function mathRad(n,m){
+		return parseInt(Math.random()*(m-n)+n);
+	}
+	
+	function getStyle (obj,name){
+		return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj,false)[name];	
+	}
+	
+};
+</script>
+</head>
+
+<body>
+	<div id="window">
+		<span>HTML</span>
+		<span>CSS</span>
+		<span>JavaScript</span>
+		<span>DW</span>
+		<span>jQuery</span>
+		<span>PS</span>
+		<span>CSS3</span>
+		<span>HTML5</span>
+		<span>seajs</span>
+		<span>Angularjs</span>	
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>双色球选号</title>
+<style>
+*{margin:0; padding:0px; list-style:none;}
+.box{width:400px; height:50px; margin:100px auto;}
+#ul1 li{ width:50px; height:50px; background:red; float:left; margin-right:5px; border-radius:50%; color:#fff; text-align:center;line-height:50px;}
+</style>
+<script>
+
+function findd (arr,n){
+		for(var i=0; i<arr.length; i++){
+			if(arr[i]==n){
+				return true;
+			}
+		}
+		return false;
+}
+function add (n){
+	if(n<10){
+		return '0'+n;
+	}else{
+		return ''+n;	
+	}	
+}
+function rnd (n,m){
+		return parseInt(Math.random()*(m-n)+n);
+}
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var aLi=document.getElementsByTagName('li');
+	
+	var timer=null;
+	caipiao();
+	oBtn.onclick=caipiao;
+	
+	function caipiao (){
+		timer=setInterval(function(){
+		var arr=[];
+		while(arr.length<6){
+			var n=rnd(1,34);
+			if(findd(arr,n)==false){
+				arr.push(n);
+			}
+		}
+		arr.sort(function (n1,n2){
+			return n1-n2;	
+		});	
+		for(var i=0; i<arr.length; i++){
+			aLi[i].innerHTML=add(arr[i]);
+		}	
+		},30);
+		setTimeout(function(){
+			clearInterval(timer);	
+		},500);
+	}
+};
+</script>
+</head>
+
+<body>
+	<div class="box">
+		<input id="btn1" type="button" value="点击选号" />
+	    <ul id="ul1" class="box">
+	    	<li></li>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	    </ul>
+    </div>
+</body>
+</html>

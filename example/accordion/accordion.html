@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>手风琴效果</title>
+<style>
+#box{position:relative;height:332px; overflow:hidden; margin:50px auto;}
+#box div{float:left; position:absolute; left:0; top:0; height:332px; width:500px; padding-left:20px}
+#box div span{width:20px; height:332px; position:absolute; left:0; top:0; line-height:166px; text-align:center; }
+</style>
+<script src="ready.js"></script>
+<script src="yun1.js"></script>
+<script>
+$(function(){
+	var oDiv=document.getElementById('box');
+	var aDiv=oDiv.getElementsByTagName('div');
+	var len=aDiv.length;
+	
+	oDiv.style.width=aDiv[0].offsetWidth+(len-1)*20+'px';
+	for(var i=1; i<len; i++){
+		aDiv[i].style.left=aDiv[0].offsetWidth+(i-1)*20+'px';
+	}
+	for(var i=0; i<len ; i++){
+		(function(index){
+			aDiv[i].onmouseover=function(){
+				for(var i=0; i<len ; i++){
+					if(i<=index){
+						yun(aDiv[i],{left:i*20});
+					}else{
+						yun(aDiv[i],{left:aDiv[0].offsetWidth+(i-1)*20});
+					}	
+				}	
+			};
+		})(i);
+	}
+});
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<div><img src="../3dphotoalbum/img/1.jpg"  /><span style="background:rgb(205,179,128);">0</span></div>
+        <div><img src="../3dphotoalbum/img/2.jpg" /><span style="background:rgb(252,157,154);">1</span></div>
+        <div><img src="../3dphotoalbum/img/3.jpg"  /><span style="background:rgb(205,179,128);">2</span></div>
+        <div><img src="../3dphotoalbum/img/4.jpg"  /><span style="background:rgb(118,77,57);">3</span></div>
+        <div><img src="../3dphotoalbum/img/5.jpg"  /><span style="background:rgb(114,111,128);">4</span></div>
+    </div>
+</body>
+</html>

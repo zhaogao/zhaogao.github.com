@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模仿扫雷游戏</title>
+<style>
+#div1 {width:620px; height:620px; position:relative; margin:0px auto; border:1px solid black;}
+#div1 div {position:absolute; width:60px; height:60px; background:rgb(229,187,129); text-align:center; line-height:60px; font-size:30px; border:1px solid black; }
+#div1 div.lei {}
+#div1 div.kong {background:#CCC;}
+#btn1{position:absolute; left:1000px; top:600px; width:100px; height:40px; font-size:16px; background:red; color:#000;}
+</style>
+<script>
+function myRnd(n, m)
+{
+	return parseInt(Math.random()*(m-n))+n;
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	var aDiv=[];
+	
+	//生成棋盘
+	for(var i=0;i<10;i++)
+	{
+		aDiv[i]=[];
+		
+		for(var j=0;j<10;j++)
+		{
+			var oNewDiv=document.createElement('div');
+			
+			oNewDiv.style.left=j*62+'px';
+			oNewDiv.style.top=i*62+'px';
+			
+			oDiv.appendChild(oNewDiv);
+			
+			aDiv[i][j]=oNewDiv;
+			aDiv[i][j].row=i;
+			aDiv[i][j].col=j;
+		}
+	}
+	
+	function getNum(row, col)
+	{
+		if(row<0 || col<0) return 0;
+		if(row>=10 || col>=10) return 0;
+		if(aDiv[row][col].className=='lei')
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	//2.生成雷
+	for(var i=0;i<20;i++)
+	{
+		var row=myRnd(0,10);
+		var col=myRnd(0,10);
+		
+		while(aDiv[row][col].className=='lei')
+		{
+			
+			var row=myRnd(0,10);
+			var col=myRnd(0,10);
+		}
+		
+		aDiv[row][col].className='lei';
+	}
+	
+	document.oncontextmenu=function ()
+	{
+		return false;
+	};
+	
+	//3.点击
+	for(var i=0;i<10;i++)
+	{
+		for(var j=0;j<10;j++)
+		{
+
+			aDiv[i][j].onclick=function ()
+			{
+				
+				if(this.className=='lei')	
+				{
+					for(var i=0;i<oDiv.children.length;i++)
+					{
+						if(oDiv.children[i].className=='lei')
+						{
+							oDiv.children[i].style.background='url(lei.png)';
+
+						}
+					}
+
+			
+				}
+				else
+				{
+				
+					this.className='kong';
+					var sum=0;
+					
+					sum+=getNum(this.row-1,this.col-1);
+					sum+=getNum(this.row-1,this.col);
+					sum+=getNum(this.row-1,this.col+1);
+					sum+=getNum(this.row,this.col-1);
+					sum+=getNum(this.row,this.col+1);
+					sum+=getNum(this.row+1,this.col-1);
+					sum+=getNum(this.row+1,this.col);
+					sum+=getNum(this.row+1,this.col+1);
+										
+					if(sum>0)
+					{
+						this.innerHTML=sum;
+					}
+				}
+			};
+		}
+	}
+	
+	document.getElementById('btn1').onclick=function ()
+	{
+		for(var i=0;i<oDiv.children.length;i++)
+		{
+			if(oDiv.children[i].className=='lei')
+			{
+				oDiv.children[i].style.background='url(lei.png)';
+			}
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="作弊" />
+<div id="div1" >
+</div>
+</body>
+</html>

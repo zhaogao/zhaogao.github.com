@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无缝轮播图</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+a {text-decoration:none;}
+img{border:none;}
+#box{position:relative;width:480px; height:272px;  overflow:hidden; margin:100px auto; background:#ccc;}
+#box ul {position:absolute; left:0; top:0; width:4800px; height:272px; z-index:2;}
+#box ul li{float:left;}
+#box ol {position:absolute; width:180px; height:22px; right:30px; bottom:10px; z-index:4; }
+#box ol li{float:left; margin-right:10px; width:20px; height:20px; line-height:20px; text-align:center; background:#fff; border-radius:2px; cursor:pointer;}
+
+#box .active{width:30px; height:30px; background:#999; margin-left:-5px; margin-top:-10px; margin-right:5px; line-height:30px; color:#fff;}
+
+#pre ,#next{position:absolute; top:50%; margin-top:-15px; width:30px; height:30px;  z-index:5; background:#ccc; opacity:0.5; filter:alpha(opacity:50);}
+#pre span,#next span {display:block; width:24px; height:100%;font-size:30px; color:#fff; line-height:30px; padding-left:6px; font-weight:bold; }
+#next span{width:22px;  padding-left:8px;}
+#pre {left:0; }
+#next{right:0; }
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oUl=document.getElementById('ul1');
+	var oOl=document.getElementsByTagName('ol')[0];
+	var aOl=oOl.children;
+	var aLi=oUl.children;
+	var oPre=document.getElementById('pre');
+	var oNext=document.getElementById('next');
+	
+	var len=aOl.length;
+	var timer=null
+	var iNow=0;
+	oUl.innerHTML +=oUl.innerHTML;
+	var w=aLi[0].offsetWidth*aLi.length/2;
+	
+	
+	oNext.onclick=function(){
+		iNow++;
+
+		tab();	
+	};
+	
+	oPre.onclick=function(){
+		iNow--;
+
+		tab();	
+	};
+	
+	function next(){
+		iNow++;
+		tab();		
+	}
+	
+	timer=setInterval(next,1000);
+	
+	oBox.onmouseover=function(){
+		clearInterval(timer);	
+	};
+	
+	oBox.onmouseout=function(){
+		timer=setInterval(next,1000);
+	};
+	
+	for(var i=0; i<len; i++){
+		(function(index){
+			aOl[i].onclick=function(){
+				if(aOl[0].className=="active" && index==len-1){
+					iNow--;
+				}else if(aOl[len-1].className=="active" && index==0){
+					iNow++;
+				}else{
+					iNow=Math.floor(iNow/len)*len+index;
+				}
+				tab();
+			};
+		})(i);
+	}
+	
+	function tab (){
+		for(var i=0; i<len; i++){
+			aOl[i].className='';
+		}
+		if(iNow<0){
+			aOl[(iNow%len+len)%len].className="active";
+		}else{
+			aOl[iNow%len].className="active";
+		}
+		
+		move(oUl,-aLi[0].offsetWidth*iNow,500);	
+	}
+	
+	var left=0; 
+	
+	function move (obj,iTarget,time){
+		var start=left;
+		var dis=iTarget-start;
+		var n=0; 
+		var count=Math.round(time/30);
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			n++;
+			var a=1-n/count
+			var cur=start+dis*(1-a*a*a);
+			left=cur;
+			
+			if(left<0){
+				oUl.style.left=left%w+'px';
+			}else{
+				oUl.style.left=left%w-w+'px';
+			}
+			if(n==count){
+				clearInterval(obj.timer);
+			}	
+		},30);
+		
+	}	
+
+};
+</script>
+</head>
+
+<body>
+	<div id="box">
+        <ul id="ul1">
+            <li><img src="img/1.jpg"</li>
+            <li><img src="img/2.jpg"</li>
+            <li><img src="img/3.jpg"</li>
+            <li><img src="img/4.jpg"</li>
+            <li><img src="img/5.jpg"</li>
+        </ul>
+        <ol >
+        	<li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+        <a id="pre" href="javascript:;"><span>&lt;</span></a>
+        <a id="next"href="javascript:;"><span>&gt;</span></a>
+       </div> 
+</body>
+</html>

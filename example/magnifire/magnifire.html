@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>淘宝放大镜</title>
+<style>
+#div1{position:relative;width:300px; height:400px; border:1px solid black;  margin:40px auto;}
+#mask{display:none; position:absolute; top:0px; left:0px; width:100px; height:100px; background:yellow; opacity:0.3; filter:alpha(opacity:30);}
+#div2{display:none; position:absolute; top:-1px; left:320px; width:300px; height:400px; overflow:hidden; border:1px solid red;}
+#div2 img{ position:absolute; top:0px; left:0px;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2');
+	var oSpan=document.getElementById('mask');
+	var oImg=oDiv2.children[0];
+	//alert(oDiv1.offsetLeft);
+	oDiv1.onmouseover=function(ev){
+		var oEvent=ev || event;
+		var oFrom=oEvent.fromElement || oEvent.relatedTarget;
+		
+		if(oFrom && this.contains(oFrom)){
+			return;
+		}
+		oSpan.style.display='block';
+		oDiv2.style.display='block';	
+	};
+	
+	oDiv1.onmouseout=function(ev){
+		var oEvent=ev || event;
+		var oTo=oEvent.toElement || oEvent.relatedTarget;
+		if(oTo && this.contains(oTo)){
+			return;
+		}
+		
+		oSpan.style.display='none';
+		oDiv2.style.display='none';	
+	};
+	
+	oDiv1.onmousemove=function(ev){
+		var oEvent=ev || event;
+		var l=oEvent.clientX-oSpan.offsetWidth/2-oDiv1.offsetLeft;
+		var t=oEvent.clientY-oSpan.offsetHeight/2-oDiv1.offsetTop;
+
+		if(l<0){
+			l=0;
+		}else if(l>oDiv1.offsetWidth-oSpan.offsetWidth){
+			l=oDiv1.offsetWidth-oSpan.offsetWidth-2;
+		}
+		
+		if(t<0){
+			t=0;
+		}else if(t>oDiv1.offsetHeight-oSpan.offsetHeight){
+			t=oDiv1.offsetHeight-oSpan.offsetHeight-2;
+		}
+		
+		var scalX=l/(oDiv1.offsetWidth-oSpan.offsetWidth);
+		var scalY=t/(oDiv1.offsetHeight-oSpan.offsetHeight);
+		
+		oImg.style.left=-scalX*(oImg.offsetWidth-oDiv2.offsetWidth)+'px';
+		oImg.style.top=-scalY*(oImg.offsetHeight-oDiv2.offsetHeight)+'px';
+		
+		//oSpan.innerHTML=l+'|'+t;
+		oSpan.style.left=l+'px';
+		oSpan.style.top=t+'px';
+	};
+};
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	<img  src="img/small.png" height="400" width="300"  />
+        <span id="mask"></span>
+        <div id="div2">
+        	<img src="img/11.png" height="800" width="600" />
+        </div>
+    </div>
+</body>
+</html>

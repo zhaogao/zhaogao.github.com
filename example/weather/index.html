@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>天气预报</title>
+  <link rel="stylesheet" href="base.css" />
+  <script src="getClass.js"></script>
+  <script>
+window.onload=function(){
+  var oUl=document.getElementById('ul1');
+  var aLi=oUl.children;
+  var aA=oUl.getElementsByTagName('a');
+  var  aDiv=getByClass(oUl,'hezhi');
+
+ for(var i=0; i<aDiv.length; i++){
+  (function(index){
+    aA[index].onclick=function(){
+      this.style.display='none';
+      aDiv[index].innerHTML +='<div class="he_con">\
+              <div class="ht_top">北京</div>\
+              <div class="ht_mid">18℃~ 4℃</div>\
+              <div class="ht_bot">\
+                <span>小雨夹雪</span>\
+                &nbsp;\
+                <span>北风4-5级</span>\
+              </div>\
+              <div class="yutu">\
+                <img src="img/yu.png" />\
+              </div>\
+            </div>\
+            <div class="htbg"></div>\
+            <div class="li_delet"></div>';
+          };
+      aDiv[index].onclick=function(ev){
+        var oEv=ev || event;
+        var oSc=oEv.srcElement || oEv.target;
+        if(oSc.className=='li_delet'){
+           this.innerHTML='';
+           aA[index].style.display='block';
+        } 
+      }
+
+        })(i);
+    }
+
+
+  var oSpan=document.getElementById('ispn');
+  var oIpt=document.getElementById('ipt1');
+  //alert(oIpt);
+  oIpt.focus();
+  oIpt.oninput=function(){
+      oSpan.style.display='none';
+    };
+  
+
+
+ };
+</script>
+</head>
+
+<body>
+  <div class="box nu1">
+    <div class="search">
+      <div class="sear_con clearfix">
+        <div class="sh_left left">
+          <input id="ipt1" type="text" value=""/>
+          <a href="javascript:;"></a>
+          <span id="ispn">输入城市名称、区号、首字母、全拼、邮编均可</span>
+        </div>
+        <div class="sh_right left clearfix">
+          <span class="left" >最近搜索：</span>
+          <a href="#">北京、</a>
+          <a href="#">北京、</a>
+          <a href="#">北京、</a>
+          <a href="#">北京、</a>
+          <a href="#">北京、</a>
+          <a href="#">北京</a>
+        </div>
+      </div>
+      <div class="ser_shod"></div>
+    </div>
+    <div class="city">
+      <div class="city_con clearfix">
+        <ul id="ul1" class="clearfix">
+          <li  class=" ">
+            <a href="javascript:;" >添加城市</a>
+            <div class="hezhi">
+              <!-- <div class="he_con">
+              <div class="ht_top">北京</div>
+              <div class="ht_mid">18℃~ 4℃</div>
+              <div class="ht_bot">
+                <span>小雨夹雪</span>
+                &nbsp;
+                <span>北风4-5级</span>
+              </div>
+              <div class="yutu">
+                <img src="img/yu.png" />
+              </div>
+            </div>
+            <div class="htbg"></div>
+            <div class="li_delet">sdaad</div>
+            -->
+          </div>
+        </li>
+        <li  class=" rigun">
+          <a href="javascript:;" >添加城市</a>
+          <div class="hezhi"></div>
+        </li>
+
+          <li class="rigun" >
+            <a href="javascript:;" >添加城市</a>
+            <div class="hezhi"></div>
+          </li>
+
+            <li class="rigun">
+              <a href="javascript:;" >添加城市</a>
+              <div class="hezhi"></div>
+            </li>
+
+            </ul>
+          </div>
+          <div class="city_shod"></div>
+
+        </div>
+        <div class="wrap">
+          <div class="now">
+            <div class="now_top clearfix">
+              <div class="le left mr1">
+                <div class="nle_con ">
+                  <span>北京</span>
+                  天气预报
+                </div>
+                <div class="nle_shod"></div>
+              </div>
+              <div class="ri left">
+                <div class="ri_con">生活指数</div>
+                <div class="ri_shod"></div>
+              </div>
+              <div class="left sk">实况 8℃  湿度50%  微风  PM2.5：144ug/m3</div>
+            </div>
+            <div class="now_con ">
+              <div class="con_xi clearfix">
+                <div class="day xiku left">
+                  <div class="day_top">今天白天</div>
+                  <div class="day_mid">
+                    <span>12</span>
+                    <span class="deg">℃</span>
+                    晴
+                  </div>
+                  <div class="day_bot">
+                    <span>空气湿度：85%</span>
+                    <span>风力风向：东南风4级</span>
+                  </div>
+                </div>
+
+                <div class="night xiku right">
+                  <div class="day_top">今天白天</div>
+                  <div class="day_mid">
+                    <span>12</span>
+                    <span class="deg">℃</span>
+                    晴
+                  </div>
+                  <div class="day_bot">
+                    <span>空气湿度：85%</span>
+                    <span>风力风向：东南风4级</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="xi_shod"></div>
+            </div>
+
+          </div>
+          <div class="yubao mt3 clearfix">
+            <div class="yu_box clearfix left mr1">
+              <div class="yu_con">
+                <h2 class="">明天 星期二</h2>
+                <div class="yu_le left">
+                  <ul>
+                    <li>白天</li>
+                    <li>
+                      <img src="img/4.png" />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+                </div>
+                <div class="yu_ri left">
+                  <ul >
+                    <li>夜间</li>
+                    <li>
+                      <img src="img/3.png"  />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+
+                </div>
+              </div>
+              <div class="yu_shod"></div>
+            </div>
+            <div class="yu_box clearfix left mr1">
+              <div class="yu_con">
+                <h2 class="">明天 星期二</h2>
+                <div class="yu_le left">
+                  <ul>
+                    <li>白天</li>
+                    <li>
+                      <img src="img/4.png" />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+                </div>
+                <div class="yu_ri left">
+                  <ul >
+                    <li>夜间</li>
+                    <li>
+                      <img src="img/3.png"  />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+
+                </div>
+              </div>
+              <div class="yu_shod"></div>
+            </div>
+            <div class="yu_box left clearfix">
+              <div class="yu_con">
+                <h2 class="">明天 星期二</h2>
+                <div class="yu_le left">
+                  <ul>
+                    <li>白天</li>
+                    <li>
+                      <img src="img/4.png" />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+                </div>
+                <div class="yu_ri left">
+                  <ul >
+                    <li>夜间</li>
+                    <li>
+                      <img src="img/3.png"  />
+                    </li>
+                    <li class="wd">15℃</li>
+                    <li>小雨</li>
+                    <li>南风 三级</li>
+                    <li></li>
+                  </ul>
+
+                </div>
+              </div>
+              <div class="yu_shod"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+</body>
+    </html>
